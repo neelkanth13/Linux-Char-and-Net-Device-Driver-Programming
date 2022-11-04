@@ -10,9 +10,9 @@
  *
  * You should be able to exercise it with:
  *
- *     insmod lab1_network.ko
- *     ifconfig mynet0 up 192.168.3.197
- *     ifconfig mynet0
+ *     insmod network_device_driver.ko
+ *     ifconfig neel_netif0 up 192.168.3.197
+ *     ifconfig neel_netif0
  *
  * Make sure your chosen address is not being used by anything else.
  *
@@ -90,7 +90,22 @@ static int __init my_init(void)
 {
     pr_info("Loading stub network module:....");
 
-    dev = alloc_netdev(0, "mynet%d", NET_NAME_UNKNOWN, my_setup);
+    /*
+     * alloc_netdev allocates the private data area and the net device structure.
+     * It also initializes the name field in the net_device structure to the base
+     * string for the name, such as neel_netif%d, as done below.
+     *
+     * Sample example
+     * $ ifconfig neel_netif0 <== name of the newly created net device interface.
+     *   neel_netif0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+     *   inet6 fe80::56ef:2353:5d:77db  prefixlen 64  scopeid 0x20<link>
+     *   ether 00:01:02:03:04:05  txqueuelen 1000  (Ethernet)
+     *   RX packets 0  bytes 0 (0.0 B)
+     *   RX errors 0  dropped 0  overruns 0  frame 0
+     *   TX packets 0  bytes 0 (0.0 B)
+     *   TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+     */
+    dev = alloc_netdev(0, "neel_netif%d", NET_NAME_UNKNOWN, my_setup);
     if (register_netdev(dev)) {
         pr_info(" Failed to register\n");
         free_netdev(dev);
