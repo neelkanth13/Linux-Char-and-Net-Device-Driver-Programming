@@ -5,6 +5,40 @@
 
 #define NETLINK_TEST 17
 
+/*
+ * The nlmsghdr structure is used to send and receive Netlink messages 
+ * between user-space and kernel-space processes in Linux. The Netlink 
+ * protocol is used for various purposes such as configuring network 
+ * interfaces, managing network devices, and monitoring network events.
+ */
+
+/*
+ * In Linux networking, skb_buff is a data structure used to 
+ * represent network packets as they are processed through the 
+ * kernel's network stack.
+ *
+ * In the context of network transmission (tx), skb_buff is used 
+ * to represent the packet as it moves through the various layers 
+ * of the network stack, from the application layer down to the 
+ * physical layer. As the packet moves through each layer, metadata 
+ * is added to the skb_buff to describe the packet's characteristics, 
+ * such as the source and destination MAC addresses, IP addresses, 
+ * and protocol type. The skb_buff is also used to store the actual 
+ * packet data.
+ *
+ * In the context of network reception (rx), skb_buff is used to 
+ * represent the incoming packet as it is received by the network 
+ * interface card (NIC) and processed by the kernel's network stack. 
+ * The skb_buff is used to store the packet data and associated 
+ * metadata, such as the source and destination MAC addresses, 
+ * IP addresses, and protocol type. The skb_buff is then passed up 
+ * through the network stack to the appropriate protocol layer for 
+ * further processing.
+ *
+ * Overall, skb_buff is an important data structure in Linux networking 
+ * that enables efficient processing of network packets as they move 
+ * through the kernel's network stack, both in transmission and reception.
+ */
 
 struct sock *nl_sock = NULL;
 

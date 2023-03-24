@@ -26,6 +26,8 @@ int main(int argc, char **argv)
     return 1;
   }
 
+  printf("Process id of the process: %d\n", getpid());  
+
   sock_fd = socket(PF_NETLINK, SOCK_RAW, NETLINK_TEST);
   if (sock_fd < 0) {
     printf("socket: %s\n", strerror(errno));
